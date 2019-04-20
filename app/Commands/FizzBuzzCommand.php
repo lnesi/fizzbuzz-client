@@ -80,6 +80,14 @@ class FizzBuzzCommand extends Command
     private function printHelp()
     {
         $this->info("FizzBuzz Client Help");
+        $this->line("Select the oprations you desire to execute by introducing the action number in brakets on the menu.");
+        $this->info("Navigation");
+        $this->line("Yo can navigate the pagination by using Go to page [3] command and introducing page number, if page number is invalid the app will default back to page 1");
+        $this->info("Favorites");
+        $this->line("You can add or remove to favories by using option [5] and indicating the ID of the item you desire to save or remove.");
+        $this->line("If the item is not already added into the favorites will be added however if the item is alredy on the favorite list will be removed.");
+        $this->info("Pagination");
+        $this->line("You can specified the size of list to display by using option [2]. If the size is negative or out of bounds (100,000,000,000) will default to 100 which is the default value.");
         $this->printMenu();
     }
 
