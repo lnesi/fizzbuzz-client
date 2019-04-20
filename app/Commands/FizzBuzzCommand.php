@@ -38,7 +38,10 @@ class FizzBuzzCommand extends Command
      */
     private $menu=['Help','Show results','Change page size','Go to page','Show favorites','Add or remove to favorites'];
 
-
+    /**
+    * HTTP Client to share for single session on cookie
+    */
+    private $client;
     /**
      * The description of the command.
      *
@@ -55,6 +58,8 @@ class FizzBuzzCommand extends Command
     {
         $this->info('FizzBuzz');
         $this->line('Welcome to FizzBuzz Client');
+        //Initialize cookie JAR
+        $this->client=new Client(['cookies'=>true]);
         $this->load();
     }
 
@@ -83,8 +88,7 @@ class FizzBuzzCommand extends Command
     */
     private function load()
     {
-        $client = new Client(); //GuzzleHttp\Client
-        $result=$client->get('http://localhost:3000/api/v1/fizzbuzz?page='.$this->page['current']."&size=".$this->page['size']);
+        $result=$this->client->get('http://localhost:3000/api/v1/fizzbuzz?page='.$this->page['current']."&size=".$this->page['size']);
         $jsonData=json_decode($result->getBody(), true);
         $this->page=$jsonData['page'];
         $this->list=array_map([$this,'transformListResponse'], $jsonData['data']);
@@ -99,7 +103,7 @@ class FizzBuzzCommand extends Command
         return array(
         $item['id'],
         $item['value'],
-        $item['fav']===true?'Yes':'No');
+        $item['fav']==true?'Yes':'No');
     }
 
     /**
@@ -132,7 +136,7 @@ class FizzBuzzCommand extends Command
           $this->printHelp();
           break;
         case "Show results":
-          $this->printPage();
+          $this->load();
           break;
         case "Change page size":
             $this->changePageSize();
@@ -199,11 +203,30 @@ class FizzBuzzCommand extends Command
     */
     private function postFavorites($id)
     {
-        $client = new Client(); //GuzzleHttp\Client
-        $result=$client->post('http://localhost:3000/api/v1/favorites', [
+
+        $result=$this->client->post('http://localhost:3000/api/v1/favorites', [
           RequestOptions::JSON => ['id' => $id]
         ]);
         $data=json_decode($result->getBody(), true);
         $this->line($data['msg']);
+        $this->printMenu();
+    }
+
+    /**
+    * Load and print table Favorites
+    */
+    private function showFavorites(){
+
+        $result=$this->client->get('http://localhost:3000/api/v1/favorites');
+        $data=json_decode($result->getBody(), true);
+        $this->info("Favorites");
+        if(count($data['data'])>0){
+          $headers = ['ID', 'Value'];
+          $this->table($headers, $data['data']);
+        }else{
+          $this->line("No items added yet");
+        }
+
+        $this->printMenu();
     }
 }
