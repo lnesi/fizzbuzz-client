@@ -203,7 +203,6 @@ class FizzBuzzCommand extends Command
     */
     private function postFavorites($id)
     {
-
         $result=$this->client->post('http://localhost:3000/api/v1/favorites', [
           RequestOptions::JSON => ['id' => $id]
         ]);
@@ -215,16 +214,16 @@ class FizzBuzzCommand extends Command
     /**
     * Load and print table Favorites
     */
-    private function showFavorites(){
-
+    private function showFavorites()
+    {
         $result=$this->client->get('http://localhost:3000/api/v1/favorites');
         $data=json_decode($result->getBody(), true);
         $this->info("Favorites");
-        if(count($data['data'])>0){
-          $headers = ['ID', 'Value'];
-          $this->table($headers, $data['data']);
-        }else{
-          $this->line("No items added yet");
+        if (count($data['data'])>0) {
+            $headers = ['ID', 'Value'];
+            $this->table($headers, $data['data']);
+        } else {
+            $this->line("No items added yet");
         }
 
         $this->printMenu();
