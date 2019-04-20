@@ -36,7 +36,7 @@ class FizzBuzzCommand extends Command
      *
      * @var array(string)
      */
-    private $menu=['Help','Show results','Change page size','Go to page','Show favorites','Add or remove to favorites'];
+    private $menu=['Help','Show results','Change page size','Go to page','Show favorites','Add or remove to favorites','Close (exit)'];
 
     /**
     * HTTP Client to share for single session on cookie
@@ -120,6 +120,7 @@ class FizzBuzzCommand extends Command
     */
     private function printMenu()
     {
+        $this->logo();
         $this->line("Please select the number of options below:");
         $action=$this->choice('Main Menu', $this->menu);
         $this->processAction($action);
@@ -149,6 +150,9 @@ class FizzBuzzCommand extends Command
           break;
         case "Add or remove to favorites":
           $this->processFavorites();
+          break;
+        case "Close (exit)":
+          $this->line("Bye Bye! :) Thank you!");
           break;
       }
     }
@@ -227,5 +231,18 @@ class FizzBuzzCommand extends Command
         }
 
         $this->printMenu();
+    }
+
+    /**
+    * Print fizz buzz logo
+    */
+    private function logo(){
+      $this->line(" __ _         _                    ");
+      $this->line("/ _(_)       | |                   ");
+      $this->line("| |_ _ _______| |__  _   _ ________");
+      $this->line("|  _| |_  /_  / '_ \| | | |_  /_  /");
+      $this->line("| | | |/ / / /| |_) | |_| |/ / / / ");
+      $this->line("|_| |_/___/___|_.__/ \__,_/___/___|");
+
     }
 }
