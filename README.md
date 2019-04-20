@@ -5,9 +5,13 @@
 
 The following app is designed to be run  on a host with the following tools
 - OS capable of running PHP 7.1.3+
-To run source also:
+- fizzbuzz-api package running on same machine in default settings (http://localhost:3000) please visit [https://github.com/lnesi/fizzbuzz-api](https://github.com/lnesi/fizzbuzz-api) for details.
+
+**To run source also required:**
+
 - composer [https://getcomposer.org/download/](https://getcomposer.org/download/)
-**Require PHP Pacages:**
+
+**Required PHP Pacages:**
 On Linux hosts the following packages (debian)
 ```
 php-common                                      install
