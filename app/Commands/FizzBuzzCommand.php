@@ -109,6 +109,9 @@ class FizzBuzzCommand extends Command
         case "Go to page":
             $this->goToPage();
             break;
+        case "Add or remove to favorites":
+          $this->processFavorites();
+          break;
       }
     }
 
@@ -132,5 +135,10 @@ class FizzBuzzCommand extends Command
         $this->error("Value is required or invalid");
         $this->changePageSize();
       }
+    }
+
+    private function processFavorites(){
+      $this->line('<fg=red>Attention:</> If the item you are trying to add is already added will be removed from favorites');
+      $current = $this->ask('Please id(index) whould you like to add or remove (number)');
     }
 }
