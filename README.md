@@ -64,7 +64,9 @@ php fizzbuzz-client app:build
 
 This will generate a self executable php file inside the build folder.
 
-##FizzBuzz Client Help
+
+##FizzBuzz Client help
+
 
 ![Screenshot](screenshot.png)
 
