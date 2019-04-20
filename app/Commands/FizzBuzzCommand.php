@@ -237,8 +237,8 @@ class FizzBuzzCommand extends Command
     * Print fizz buzz logo
     */
     private function logo(){
-      $this->line(" __ _         _                    ");
-      $this->line("/ _(_)       | |                   ");
+      $this->line(" __ _          _                   ");
+      $this->line("/ _(_)        | |                  ");
       $this->line("| |_ _ _______| |__  _   _ ________");
       $this->line("|  _| |_  /_  / '_ \| | | |_  /_  /");
       $this->line("| | | |/ / / /| |_) | |_| |/ / / / ");
