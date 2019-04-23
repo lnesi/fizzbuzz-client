@@ -1,0 +1,1 @@
+[{"Name":"session","Value":"eyJmYXZvcml0ZXMiOlsxXX0=","Domain":"localhost","Path":"\/","Max-Age":null,"Expires":1556013540,"Secure":false,"Discard":false,"HttpOnly":true},{"Name":"session.sig","Value":"bQ9syrijlTP6BmW-orEpoj1srVI","Domain":"localhost","Path":"\/","Max-Age":null,"Expires":1556013540,"Secure":false,"Discard":false,"HttpOnly":true}]
